@@ -1,0 +1,54 @@
+start server
+server listening to port 7777
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 74
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.13999999999999285,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 74<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---===>>>AAA
+===>>>AAA2
+--->ccccccc
+--->DDDDDDD
+--->EEE
+accepting incoming connection from on port 45273.
+--->FFFF
+--->GGGGGG
+===>>>AAA3
+found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 247
++++>205
+------->42
+-->averageClearingPrice:0.13999999999999285,<--------------------------------------
+--->HHHHH
+--->1111
+--->333
+>>>>>>>>>>>>>>>>>: averageCHlearin

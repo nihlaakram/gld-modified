@@ -1,0 +1,53 @@
+start server
+server listening to port 7777
+                                      
+Core profiler results
+======================
+
+Total objects               4079 objects
+Parallelism                    1 thread
+Total time                   3.0 seconds
+  Core time                  1.1 seconds (37.0%)
+    Compiler                 3.9 seconds (128.5%)
+    Instances                0.0 seconds (0.0%)
+    Random variables         0.0 seconds (0.0%)
+    Schedules                0.0 seconds (0.0%)
+    Loadshapes               0.0 seconds (0.9%)
+    Enduses                  0.0 seconds (0.4%)
+    Transforms               0.1 seconds (1.9%)
+  Model time                 1.9 seconds/thread (63.0%)
+Simulation time                0 days
+Simulation speed             567 object.hours/second
+Passes completed              98 passes
+Time steps completed          26 timesteps
+Convergence efficiency      3.77 passes/timestep
+Read lock contention        0.0%
+Write lock contention       0.0%
+Average timestep             58 seconds/timestep
+Simulation rate             500 x realtime
+
+
+Model profiler results
+======================
+
+Class            Time (s) Time (%) msec/obj
+---------------- -------- -------- --------
+multi_recorder     0.767     40.6%    383.5
+triplex_meter      0.224     11.8%      0.4
+house              0.205     10.8%      0.3
+triplex_line       0.157      8.3%      0.3
+climate            0.144      7.6%    144.0
+waterheater        0.122      6.5%      0.3
+controller         0.115      6.1%      0.2
+passive_controll   0.080      4.2%      0.2
+ZIPload            0.058      3.1%      0.1
+transformer        0.008      0.4%      0.4
+node               0.006      0.3%      0.4
+recorder           0.001      0.1%      1.0
+capacitor          0.001      0.1%      0.5
+overhead_line      0.001      0.1%      0.1
+regulator          0.001      0.1%      1.0
+auction            0.001      0.1%      1.0
+================ ======== ======== ========
+Total              1.891    100.0%      0.5
+

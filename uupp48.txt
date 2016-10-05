@@ -1,0 +1,800 @@
+start server
+server listening to port 7777
+--->ccccccc
+--->DDDDDDD
+--->EEE
+accepting incoming connection from on port 58078.
+--->FFFF
+--->GGGGGG
+--->HHHHH
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1719799999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1719799999999926,<--------------------------------------
+--->1111
+--->333
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1639849999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1639849999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1719799999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1719799999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1799749999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1799749999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1799749999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1799749999999926,<--------------------------------------
+++++++>POST /rpt HTTP/1.1
+Authorization: Basic YWRtaW46YWRtaW4=
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: localhost:6267
+Content-Length: 73
+Content-Type: text/plain; charset=UTF-8
+
+name:Market_pool,
+averageClearingPrice:0.1799749999999926,
+category:|abc,<+++++
+found at 20
++++>0
+------->20
+-->POST /rpt HTTP/1.1<---found at 59
++++>20
+------->39
+-->Authorization: Basic YWRtaW46YWRtaW4=<---found at 103
++++>59
+------->44
+-->User-Agent: Jakarta Commons-HttpClient/3.1<---found at 125
++++>103
+------->22
+-->Host: localhost:6267<---found at 145
++++>125
+------->20
+-->Content-Length: 73<---found at 186
++++>145
+------->41
+-->Content-Type: text/plain; charset=UTF-8<---found at 188
++++>186
+------->2
+--><---CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+found at 205
++++>188
+------->17
+-->name:Market_pool,<---found at 246
++++>205
+------->41
+-->averageClearingPrice:0.1799749999999926,<--------------------------------------
+
+Core profiler results
+======================
+
+Total objects               4079 objects
+Parallelism                    1 thread
+Total time                   3.0 seconds
+  Core time                  1.6 seconds (53.6%)
+    Compiler                 3.7 seconds (124.0%)
+    Instances                0.0 seconds (0.0%)
+    Random variables         0.0 seconds (0.0%)
+    Schedules                0.0 seconds (0.0%)
+    Loadshapes               0.0 seconds (0.7%)
+    Enduses                  0.0 seconds (0.5%)
+    Transforms               0.0 seconds (1.4%)
+  Model time                 1.4 seconds/thread (46.4%)
+Simulation time                0 days
+Simulation speed             431 object.hours/second
+Passes completed              75 passes
+Time steps completed          19 timesteps
+Convergence efficiency      3.95 passes/timestep
+Read lock contention        0.0%
+Write lock contention       0.0%
+Average timestep             60 seconds/timestep
+Simulation rate             380 x realtime
+
+
+Model profiler results
+======================
+
+Class            Time (s) Time (%) msec/obj
+---------------- -------- -------- --------
+multi_recorder     0.341     24.5%    170.5
+climate            0.259     18.6%    259.0
+triplex_meter      0.193     13.9%      0.3
+house              0.163     11.7%      0.3
+controller         0.114      8.2%      0.2
+triplex_line       0.104      7.5%      0.2
+waterheater        0.103      7.4%      0.2
+passive_controll   0.054      3.9%      0.1
+ZIPload            0.053      3.8%      0.1
+node               0.003      0.2%      0.2
+transformer        0.002      0.1%      0.1
+recorder           0.001      0.1%      1.0
+overhead_line      0.001      0.1%      0.1
+================ ======== ======== ========
+Total              1.391    100.0%      0.3
+

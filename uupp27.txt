@@ -1,0 +1,52 @@
+start server
+server listening to port 7777
+                                      
+Core profiler results
+======================
+
+Total objects               4079 objects
+Parallelism                    1 thread
+Total time                   3.0 seconds
+  Core time                  1.2 seconds (39.8%)
+    Compiler                 3.8 seconds (127.9%)
+    Instances                0.0 seconds (0.0%)
+    Random variables         0.0 seconds (0.0%)
+    Schedules                0.0 seconds (0.0%)
+    Loadshapes               0.0 seconds (0.8%)
+    Enduses                  0.0 seconds (0.6%)
+    Transforms               0.0 seconds (1.5%)
+  Model time                 1.8 seconds/thread (60.2%)
+Simulation time                0 days
+Simulation speed             521 object.hours/second
+Passes completed              89 passes
+Time steps completed          23 timesteps
+Convergence efficiency      3.87 passes/timestep
+Read lock contention        0.0%
+Write lock contention       0.0%
+Average timestep             60 seconds/timestep
+Simulation rate             460 x realtime
+
+
+Model profiler results
+======================
+
+Class            Time (s) Time (%) msec/obj
+---------------- -------- -------- --------
+multi_recorder     0.693     38.4%    346.5
+climate            0.224     12.4%    224.0
+triplex_meter      0.214     11.9%      0.3
+house              0.161      8.9%      0.3
+controller         0.131      7.3%      0.2
+triplex_line       0.127      7.0%      0.2
+waterheater        0.115      6.4%      0.3
+passive_controll   0.068      3.8%      0.2
+ZIPload            0.060      3.3%      0.1
+node               0.006      0.3%      0.4
+transformer        0.002      0.1%      0.1
+recorder           0.001      0.1%      1.0
+capacitor          0.001      0.1%      0.5
+overhead_line      0.001      0.1%      0.1
+auction            0.001      0.1%      1.0
+================ ======== ======== ========
+Total              1.805    100.0%      0.4
+

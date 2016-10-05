@@ -1,0 +1,54 @@
+start server
+server listening to port 7777
+                                      
+Core profiler results
+======================
+
+Total objects               4079 objects
+Parallelism                    1 thread
+Total time                   3.0 seconds
+  Core time                  0.9 seconds (30.1%)
+    Compiler                 5.5 seconds (184.0%)
+    Instances                0.0 seconds (0.0%)
+    Random variables         0.0 seconds (0.0%)
+    Schedules                0.0 seconds (0.0%)
+    Loadshapes               0.0 seconds (1.1%)
+    Enduses                  0.0 seconds (0.5%)
+    Transforms               0.0 seconds (1.4%)
+  Model time                 2.1 seconds/thread (69.9%)
+Simulation time                0 days
+Simulation speed             635 object.hours/second
+Passes completed             105 passes
+Time steps completed          28 timesteps
+Convergence efficiency      3.75 passes/timestep
+Read lock contention        0.0%
+Write lock contention       0.0%
+Average timestep             60 seconds/timestep
+Simulation rate             560 x realtime
+
+
+Model profiler results
+======================
+
+Class            Time (s) Time (%) msec/obj
+---------------- -------- -------- --------
+multi_recorder     0.865     41.3%    432.5
+triplex_meter      0.222     10.6%      0.3
+house              0.208      9.9%      0.3
+climate            0.192      9.2%    192.0
+triplex_line       0.170      8.1%      0.3
+waterheater        0.133      6.3%      0.3
+controller         0.129      6.2%      0.2
+ZIPload            0.079      3.8%      0.1
+passive_controll   0.077      3.7%      0.2
+node               0.005      0.2%      0.3
+capacitor          0.004      0.2%      2.0
+switch             0.004      0.2%      4.0
+transformer        0.003      0.1%      0.1
+recorder           0.002      0.1%      2.0
+overhead_line      0.001      0.0%      0.1
+underground_line   0.001      0.0%      0.5
+regulator          0.001      0.0%      1.0
+================ ======== ======== ========
+Total              2.096    100.0%      0.5
+
