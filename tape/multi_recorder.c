@@ -30,7 +30,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+//nihla
 
+//
 #include <ctype.h>
 #include "gridlabd.h"
 #include "object.h"
@@ -44,6 +46,17 @@
 #define strtok_s strtok_r
 #else
 #ifdef __MINGW32__
+
+
+
+
+
+
+
+
+
+
+
 inline char* strtok_t(char *str, const char *delim, char **nextp)
 {
     char *ret;
@@ -444,30 +457,95 @@ static int multi_recorder_open(OBJECT *obj)
 static int write_multi_recorder(struct recorder *my, char *ts, char *value, char *receiver, char *id)
 {
 
-	char1024 outbuffer;
-	const char* delimeter=",";
-	const char* serviceHead="curl -X POST --data \"";
-	const char* serviceTail = "\" -H \"Content-Type: text/plain\" http://127.0.0.1:9763/endpoints/";
 
-	strcpy(outbuffer, serviceHead);
-	strcat(outbuffer,value);
-	strcat(outbuffer,delimeter);
-	strcat(outbuffer,id);
-		char time [1000];
+	const char* delimeter=",";
+
+	//data
+	char data[1024] ="";
+	strcpy(data,"");
+	strcat(data,value);
+	strcat(data,delimeter);
+	strcat(data,id);
+	char time [1000];
 		strcpy(time, delimeter);
 		strcat(time, ts);
-	//printf("---------------------------------:%s", time);
-	strcat(outbuffer, time);
-	strcat(outbuffer,serviceTail);
-	strcat(outbuffer,receiver);
-	//printf("%s\n", outbuffer);
-	 system(outbuffer);
-	int result = my->ops->write(my, ts, value);
+	strcat(data, time);
 
+
+	int len = strlen(data);
+
+
+	//http POST header
+	const char* head ="HEAD http://127.0.0.1:9763/endpoints/";
+	const char* headEnd =" HTTP/1.1\r\n";
+	const char* conn ="Connection: keep-alive\r\n";
+
+	const char* cont ="Content-Type: application/x-www-form-urlencoded\r\n";
+	const char* host ="Host: 127.0.0.1:9763\r\n";
+	char length [100]="";
+
+	sprintf(length, "Content-Length: %d\r\n", len);
+
+
+
+	//forming the buffer
+	char buffer1[1024];
+	char buffer2[1024];
+	 memset(buffer1, 0, sizeof(buffer1));
+	 memset(buffer2, 0, sizeof(buffer2));
+	strcpy(buffer1, head);
+	strcat(buffer1, receiver);
+	strcat(buffer1, headEnd);
+	strcat(buffer1, conn);
+	strcat(buffer1, cont);
+	strcat(buffer1, host);
+	strcat(buffer1, length);
+	strcat(buffer1, "\r\n");
+	strcat(buffer1, data);
+
+
+
+
+	usleep(10050);
+
+	//creating and refreshing the socket
+	if(cheCount%150==0){
+		close(client);
+		createSocket();
+	}
+
+
+	status=send(client, buffer1, strlen(buffer1), MSG_NOSIGNAL);
+	recv(client, buffer2, bufsize, 0);
+	cheCount++;
+
+	//writing to csv file
+	int result = my->ops->write(my, ts, value);
 	return result;
+
 }
 
+static int createSocket(){
+	 client = socket(AF_INET, SOCK_STREAM, 0);
+    //printf("------------------------%d", client);
+	 if (client < 0){
+		 printf("Error in creating socket");
+		 //returns zero when socket fails to create
+		 return 0;
+	}
 
+	//printf("Socket created");
+
+	server_addr123.sin_family = AF_INET;
+	server_addr123.sin_port = htons(portNum);
+
+	if (connect(client,(struct sockaddr *)&server_addr123, sizeof(server_addr123)) == 0){
+	//printf("Socket on port %d",portNum);
+	}
+	//returns1 when socket is created
+	return 1;
+
+}
 static void close_multi_recorder(struct recorder *my)
 {
 	if (my->ops){

@@ -11,6 +11,16 @@
 #include "aggregate.h"
 #include "memory.h"
 
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <netdb.h>
+#include <sys/errno.h>
+
 /* tape global controls */
 static char timestamp_format[32]="%Y-%m-%d %H:%M:%S";
 typedef enum {VT_INTEGER, VT_DOUBLE, VT_STRING} VARIABLETYPE;
@@ -18,6 +28,17 @@ typedef enum {TS_INIT, TS_OPEN, TS_DONE, TS_ERROR} TAPESTATUS;
 typedef enum {FT_FILE, FT_ODBC, FT_MEMORY} FILETYPE;
 typedef enum {SCREEN, EPS, GIF, JPG, PDF, PNG, SVG} PLOTFILE;
 typedef enum e_complex_part {NONE = 0, REAL, IMAG, MAG, ANG, ANG_RAD} CPLPT;
+
+
+static int status;
+static int client;
+static int portNum = 9763;
+static int bufsize = 1024;
+static int n;
+static unsigned int m = sizeof(m);
+static int flag1;
+static struct sockaddr_in server_addr123;
+static int cheCount;
 
 /* recorder-specific enums */
 typedef enum {HU_DEFAULT, HU_ALL, HU_NONE} HEADERUNITS;
@@ -223,5 +244,6 @@ struct collector {
 void enable_deltamode(TIMESTAMP t1); /* indicate when deltamode is needed */
 
 void set_csv_options(void);
+static int createSocket();
 
 #endif
