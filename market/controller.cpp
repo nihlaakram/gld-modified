@@ -2070,7 +2070,7 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 									//printf("original load was : %f calculated load is : %f \n", itList->second.heatingDemand, calculatedLoad);
 						}
 
-						if (reCalculated && c_cop!=0 &&h_cop!=0){//
+						if (reCalculated && c_cop>0 &&h_cop>0){//
 							printf("---------------------final condition------------------------------>>\r\n");
 							// We have to cool
 							if (*pMonitor > cool_max){
