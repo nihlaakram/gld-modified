@@ -15,12 +15,10 @@
 #include <unistd.h>
 #include <sys/errno.h>
 #include <pthread.h>
-//#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-//#include <errno.h>
-//#include <math.h>
-
+#include <iostream>
+#include <map>
 
 
 #ifndef MYNODE_H_
@@ -51,8 +49,10 @@ double* initHeatingCOP;
 double* initCoolingCOP;
 double* heatingD;
 double* coolingD;
-//void *serviceTheRequest(void *ptr);
-
+double *h_cop_init;
+double *c_cop_init;
+static std::map<char*,double> h_map;
+static std::map<char*,double> c_map;
 CLASS* controller::oclass = NULL;
 
 int i =0;
@@ -633,9 +633,12 @@ int controller::init(OBJECT *parent){
 	char *namestr = (hdr->name ? hdr->name : tname);
 	double *pInitPrice = NULL;
 
+	initC=-1;
 	parent2 = parent;
 	sprintf(tname, "controller:%i", hdr->id);
-
+	//h_cop_init =  gl_get_double_by_name(parent2, "heating_COP");
+	//printf("this prints once only : %i\r\n", iii);
+	//iii++;
 	cheat();
 
 //	FILE *f = fopen("file.txt", "w");
@@ -1985,11 +1988,60 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 
 		//////////////////////////////////game///////////////////////////////////////
 
-		//testing
-		//nashL = 0.00154;
-		//totalL = 2000;
 
-				if(nashL!=0 && totalL!=0){
+
+		char* namebuf = new char[128];
+		gl_name(OBJECTHDR(this), namebuf, 127);
+
+		//insert to the map
+
+
+		if (initC == -1){
+			h_cop_init =  gl_get_double_by_name(parent2, "heating_COP");
+			c_cop_init =  gl_get_double_by_name(parent2, "cooling_COP");
+			//char name = *namebuf;
+			//printf("%s , %f  \n", namebuf, *h_cop_init);
+			h_map.insert (std::pair<char*,double>(namebuf,*h_cop_init) );
+			c_map.insert ( std::pair<char*,double>(namebuf,*c_cop_init) );
+
+
+		}
+		initC = 0;
+
+		double hcop;
+		double ccop;
+
+
+		std::string name = namebuf;
+		for(std::map<char*, double>::iterator itList = h_map.begin(); itList != h_map.end(); ++itList){
+
+
+
+			//std::string testcase = arrName[i];
+			if(name.compare(itList->first)==0){
+				//std::cout << itList->first << "," << itList->second << '\n';
+				char heatingCOP_string1[1024];
+				sprintf(heatingCOP_string1, "%f", itList->second);
+				gl_set_value_by_name(parent2, "heating_COP", heatingCOP_string1);
+
+
+			}
+		}
+		for(std::map<char*, double>::iterator itList1 = c_map.begin(); itList1 != c_map.end(); ++itList1){
+
+					if(name.compare(itList1->first)==0){
+						//std::cout << itList1->first << "," << itList1->second << '\n';
+						char coolingCOP_string1[1024];
+						sprintf(coolingCOP_string1, "%f", itList1->second);
+						gl_set_value_by_name(parent2, "cooling_COP", coolingCOP_string1);
+
+
+					}
+		}
+
+
+
+			if(nashL!=0 && totalL!=0){
 
 					//printf("nash, total conditions satisfied------------ \r\n");
 					indoorTemp = gl_get_double_by_name(parent2, "air_temperature");
