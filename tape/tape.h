@@ -38,7 +38,7 @@ static int n;
 static unsigned int m = sizeof(m);
 static int flag1;
 static struct sockaddr_in server_addr123;
-static int cheCount;
+static long long int cheCount;
 
 /* recorder-specific enums */
 typedef enum {HU_DEFAULT, HU_ALL, HU_NONE} HEADERUNITS;

@@ -462,62 +462,236 @@ static int write_multi_recorder(struct recorder *my, char *ts, char *value, char
 
 	//data
 	char data[1024] ="";
-	strcpy(data,"");
-	strcat(data,value);
-	strcat(data,delimeter);
-	strcat(data,id);
-	char time [1000];
-		strcpy(time, delimeter);
-		strcat(time, ts);
-	strcat(data, time);
+	char *re ="auction";
+	char *re1 ="controller";
+	//aution uses xml as well
+	if(strcmp(receiver, re)==0){
+		char data[1024] ="";
+				char set1[1024];
+				sprintf(set1, "%s", value);
+				int i =0;
+				char *p = strtok (set1, ",");
+				char *arr[5];
+
+				while (p != NULL){
+				arr[i++] = p;
+				p = strtok (NULL, ",");
+				 }
+
+				strcpy(data,"<events><event><payloadData><clearingprice>");
+				strcat(data,arr[0]);
+				strcat(data,"</clearingprice><clearingquantity>");
+				strcat(data,arr[1]);
+				strcat(data,"</clearingquantity><sellertotal>");
+				strcat(data,arr[2]);
+				strcat(data,"</sellertotal><buyertotal>");
+				strcat(data,arr[3]);
+				strcat(data,"</buyertotal><clearingtype>");
+				strcat(data,arr[4]);
+				strcat(data,"</clearingtype><name>");
+				strcat(data,id);
+				strcat(data,"</name><time>");
+				strcat(data,ts);
+				strcat(data,"</time></payloadData></event></events>");
+
+				int len = strlen(data);
 
 
-	int len = strlen(data);
+					//http POST header
+					const char* head ="HEAD http://127.0.0.1:9763/endpoints/";
+					const char* headEnd =" HTTP/1.1\r\n";
+					const char* conn ="Connection: keep-alive\r\n";
 
+					const char* cont ="Content-Type: application/x-www-form-urlencoded\r\n";
+					const char* host ="Host: 127.0.0.1:9761\r\n";
+					char length [100]="";
 
-	//http POST header
-	const char* head ="HEAD http://127.0.0.1:9763/endpoints/";
-	const char* headEnd =" HTTP/1.1\r\n";
-	const char* conn ="Connection: keep-alive\r\n";
-
-	const char* cont ="Content-Type: application/x-www-form-urlencoded\r\n";
-	const char* host ="Host: 127.0.0.1:9763\r\n";
-	char length [100]="";
-
-	sprintf(length, "Content-Length: %d\r\n", len);
+					sprintf(length, "Content-Length: %d\r\n", len);
 
 
 
-	//forming the buffer
-	char buffer1[1024];
-	char buffer2[1024];
-	 memset(buffer1, 0, sizeof(buffer1));
-	 memset(buffer2, 0, sizeof(buffer2));
-	strcpy(buffer1, head);
-	strcat(buffer1, receiver);
-	strcat(buffer1, headEnd);
-	strcat(buffer1, conn);
-	strcat(buffer1, cont);
-	strcat(buffer1, host);
-	strcat(buffer1, length);
-	strcat(buffer1, "\r\n");
-	strcat(buffer1, data);
+					//forming the buffer
+					char buffer1[1024];
+					char buffer2[1024];
+					 memset(buffer1, 0, sizeof(buffer1));
+					 memset(buffer2, 0, sizeof(buffer2));
+					strcpy(buffer1, head);
+					strcat(buffer1, receiver);
+					strcat(buffer1, headEnd);
+					strcat(buffer1, conn);
+					strcat(buffer1, cont);
+					strcat(buffer1, host);
+					strcat(buffer1, length);
+					strcat(buffer1, "\r\n");
+					strcat(buffer1, data);
+					strcat(buffer1, "\r\n\r\n");
+
+
+					//usleep(5000);
 
 
 
+					int flag =1;
+				    while(flag == 1){
 
-	usleep(10050);
+				        client = socket(AF_INET, SOCK_STREAM, 0);
 
-	//creating and refreshing the socket
-	if(cheCount%150==0){
-		close(client);
-		createSocket();
+				        if (client < 0)
+				        {
+
+				            exit(1);
+				        }
+
+				        server_addr123.sin_family = AF_INET;
+				        server_addr123.sin_port = htons(portNum);
+
+				        if (connect(client,(struct sockaddr *)&server_addr123, sizeof(server_addr123)) == 0){
+				          //  cout << "=> Connection to the server port number: " << portNum << endl;
+				        }
+
+				            status=send(client, buffer1, strlen(buffer1), MSG_NOSIGNAL);
+				            recv(client, buffer2, bufsize, MSG_NOSIGNAL);
+				            if (status == -1) {
+				                close(client);
+
+				            }else{
+
+
+				            	//usleep(100);
+				            	flag = 0;
+				            	close(client);
+				            	break;
+
+
+				            }
+
+				    }
+
+
+
 	}
 
+	if(strcmp(receiver, re1)==0){
+	//uses xml
+		char set[1024];
+		sprintf(set, "%s", value);
+		int i = 0;
+		    char *p = strtok (set, ",");
+		    char *arr[15];
 
-	status=send(client, buffer1, strlen(buffer1), MSG_NOSIGNAL);
-	recv(client, buffer2, bufsize, 0);
-	cheCount++;
+		    while (p != NULL)
+		    {
+		        arr[i++] = p;
+		        p = strtok (NULL, ",");
+		    }
+
+
+		    strcpy(data,"<events><event><payloadData><bid_price>");
+		    strcat(data,arr[0]);
+		    strcat(data,"</bid_price><bid_quantity>");
+		    strcat(data,arr[1]);
+		    strcat(data,"</bid_quantity><power_state>");
+		    strcat(data,arr[2]);
+		    strcat(data, "</power_state><air_temperature>");
+		    strcat(data,arr[3]);
+		    strcat(data,"</air_temperature><system_mode>");
+		    strcat(data,arr[4]);
+		    strcat(data,"</system_mode><hvac_load>");
+		    strcat(data,arr[5]);
+		    strcat(data,"</hvac_load><outdoor_temperature>");
+		    strcat(data,arr[6]);
+		    strcat(data,"</outdoor_temperature><name>");
+		    strcat(data,id);
+		    strcat(data,"</name><heating_setpoint>");
+		    strcat(data,arr[7]);
+		    strcat(data,"</heating_setpoint><cooling_setpoint>");
+		    strcat(data,arr[8]);
+		    strcat(data,"</cooling_setpoint><design_heating_capacity>");
+		    strcat(data,arr[9]);
+		    strcat(data,"</design_heating_capacity><design_cooling_capacity>");
+		    strcat(data,arr[10]);
+		    strcat(data,"</design_cooling_capacity><heating_COP>");
+		    strcat(data,arr[11]);
+		    strcat(data,"</heating_COP><cooling_COP>");
+		    strcat(data,arr[12]);
+		    strcat(data,"</cooling_COP><heating_demand>");
+		    strcat(data,arr[13]);
+		    strcat(data,"</heating_demand><cooling_demand>");
+		    strcat(data,arr[14]);
+		    strcat(data,"</cooling_demand><time>");
+		    strcat(data,ts);
+		    strcat(data,"</time></payloadData></event></events>");
+
+		    int len = strlen(data);
+
+
+		    	//http POST header
+		    	const char* head ="HEAD http://127.0.0.1:9763/endpoints/";
+		    	const char* headEnd =" HTTP/1.1\r\n";
+		    	const char* conn ="Connection: keep-alive\r\n";
+
+		    	const char* cont ="Content-Type: application/x-www-form-urlencoded\r\n";
+		    	const char* host ="Host: 127.0.0.1:9761\r\n";
+		    	char length [100]="";
+
+		    	sprintf(length, "Content-Length: %d\r\n", len);
+
+
+
+		    	//forming the buffer
+		    	char buffer1[1024];
+		    	char buffer2[1024];
+		    	 memset(buffer1, 0, sizeof(buffer1));
+		    	 memset(buffer2, 0, sizeof(buffer2));
+		    	strcpy(buffer1, head);
+		    	strcat(buffer1, receiver);
+		    	strcat(buffer1, headEnd);
+		    	strcat(buffer1, conn);
+		    	strcat(buffer1, cont);
+		    	strcat(buffer1, host);
+		    	strcat(buffer1, length);
+		    	strcat(buffer1, "\r\n");
+		    	strcat(buffer1, data);
+		    	strcat(buffer1, "\r\n\r\n");
+
+
+		    	//usleep(5000);
+
+
+
+		    	int flag =1;
+		        while(flag == 1){
+
+		            client = socket(AF_INET, SOCK_STREAM, 0);
+
+		            if (client < 0)
+		            {
+
+		                exit(1);
+		            }
+
+		            server_addr123.sin_family = AF_INET;
+		            server_addr123.sin_port = htons(portNum);
+
+		            if (connect(client,(struct sockaddr *)&server_addr123, sizeof(server_addr123)) == 0){
+		              //  cout << "=> Connection to the server port number: " << portNum << endl;
+		            }
+
+		                status=send(client, buffer1, strlen(buffer1), MSG_NOSIGNAL);
+		                recv(client, buffer2, bufsize, MSG_NOSIGNAL);
+		                if (status == -1) {
+		                    close(client);
+
+		                }else{
+		                	//usleep(100);
+		                	flag = 0;
+		                	close(client);
+		                	break;
+
+		                }
+
+		        }
+	}
 
 	//writing to csv file
 	int result = my->ops->write(my, ts, value);
