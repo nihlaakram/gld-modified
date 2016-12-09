@@ -17,6 +17,7 @@
 #include "gridlabd.h"
 #include "residential/house_e.h"
 #include <string>
+#include <vector>
 
 class controller : public gld_object {
 public:
@@ -29,6 +30,8 @@ public:
 	TIMESTAMP postsync(TIMESTAMP t0, TIMESTAMP t1);
 	static CLASS *oclass;
 	void setValue(OBJECT *parent, double c_cop, double h_cop);
+
+
 
 public:
 	typedef enum {
@@ -102,11 +105,13 @@ public:
 	double set_temp;
 	int may_run;
 
-	 int initC;
-	//static int iii=1;
+	int initC;
+	//static double arr [618];
+	//static int arrCount=0;
 
 	///////game
 	OBJECT *parent2;
+
 
 
 	//enumeration pState;

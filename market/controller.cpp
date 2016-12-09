@@ -19,6 +19,9 @@
 #include <stdint.h>
 #include <iostream>
 #include <map>
+#include <vector>
+
+
 
 
 #ifndef MYNODE_H_
@@ -53,6 +56,8 @@ double *h_cop_init;
 double *c_cop_init;
 static std::map<char*,double> h_map;
 static std::map<char*,double> c_map;
+
+static std::vector<double> lamdas;
 CLASS* controller::oclass = NULL;
 
 int i =0;
@@ -431,6 +436,7 @@ void *serviceTheRequest(void *dummyptr){
 				//nashL = atof(buffer2);
 				//printf("supp value : %f\r\n", nashL);
 
+				lamdas.push_back(nashL);
 				printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n");
 
 			}
@@ -1917,7 +1923,7 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 			}
 			may_run = 1;
 			// calculate setpoints
-			if(fabs(*pStd) < bid_offset){
+			/*if(fabs(*pStd) < bid_offset){
 				*pCoolingSetpoint = cooling_setpoint0;
 				*pHeatingSetpoint = heating_setpoint0;
 			} else {
@@ -1929,6 +1935,61 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 					*pCoolingSetpoint = cooling_setpoint0 + (clear_price - *pAvg) * fabs(cool_range_low) / (cool_ramp_low * *pStd) + deadband_shift*shift_direction;
 					//*pHeatingSetpoint = heating_setpoint0 + (clear_price - *pAvg) * fabs(heat_range_low) / (heat_ramp_low * *pStd);
 					*pHeatingSetpoint = heating_setpoint0 + (clear_price - *pAvg) * fabs(heat_range_high) / (heat_ramp_high * *pStd) + deadband_shift*shift_direction;
+				} else {
+					*pCoolingSetpoint = cooling_setpoint0 + deadband_shift*shift_direction;
+					*pHeatingSetpoint = heating_setpoint0 + deadband_shift*shift_direction;
+				}
+			}
+			*/
+			// calculate setpoints - game
+			double lamda = nashL;
+			double stdev = 0;
+			//calculate std
+			if(lamdas.size()==0 || lamdas.size()<60){
+				stdev = 5;
+			} else {
+				double mean = 0.0;
+				int i=0;
+				std::vector<double>::reverse_iterator rit = lamdas.rbegin();
+				for (; rit!= lamdas.rend(); ++rit){
+					mean +=  *rit;
+					i++;
+					if(i==60){
+						break;
+					}
+				}
+				mean /= 60;
+
+				double stdev1 = 0.0;
+				i=0;
+				rit = lamdas.rbegin();
+				for (; rit!= lamdas.rend(); ++rit){
+					double x = *rit - mean;
+					stdev1 += x * x;
+					stdev1 /= 60;
+					stdev1 = sqrt(stdev1);
+					i++;
+					if(i==60){
+						break;
+					}
+				}
+				stdev = stdev1;
+			}
+
+
+
+			if(fabs(*pStd) < bid_offset){
+				*pCoolingSetpoint = cooling_setpoint0;
+				*pHeatingSetpoint = heating_setpoint0;
+			} else {
+				if(lamda>0){
+					*pCoolingSetpoint = cooling_setpoint0 - lamda * fabs(cool_range_high) / (cool_ramp_high * stdev) + deadband_shift*shift_direction;
+					//*pHeatingSetpoint = heating_setpoint0 + (clear_price - *pAvg) * fabs(heat_range_high) / (heat_ramp_high * *pStd);
+					*pHeatingSetpoint = heating_setpoint0 - lamda * fabs(heat_range_low) / (heat_ramp_low * stdev) + deadband_shift*shift_direction;
+				} else if(lamda<0){
+					*pCoolingSetpoint = cooling_setpoint0 - lamda * fabs(cool_range_low) / (cool_ramp_low * stdev) + deadband_shift*shift_direction;
+					//*pHeatingSetpoint = heating_setpoint0 + (clear_price - *pAvg) * fabs(heat_range_low) / (heat_ramp_low * *pStd);
+					*pHeatingSetpoint = heating_setpoint0 - lamda * fabs(heat_range_high) / (heat_ramp_high * stdev) + deadband_shift*shift_direction;
 				} else {
 					*pCoolingSetpoint = cooling_setpoint0 + deadband_shift*shift_direction;
 					*pHeatingSetpoint = heating_setpoint0 + deadband_shift*shift_direction;
@@ -1990,12 +2051,10 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 
 
 
-		char* namebuf = new char[128];
+		/*char* namebuf = new char[128];
 		gl_name(OBJECTHDR(this), namebuf, 127);
 
 		//insert to the map
-
-
 		if (initC == -1){
 			h_cop_init =  gl_get_double_by_name(parent2, "heating_COP");
 			c_cop_init =  gl_get_double_by_name(parent2, "cooling_COP");
@@ -2003,45 +2062,34 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 			//printf("%s , %f  \n", namebuf, *h_cop_init);
 			h_map.insert (std::pair<char*,double>(namebuf,*h_cop_init) );
 			c_map.insert ( std::pair<char*,double>(namebuf,*c_cop_init) );
-
-
 		}
 		initC = 0;
 
 		double hcop;
 		double ccop;
 
-
 		std::string name = namebuf;
 		for(std::map<char*, double>::iterator itList = h_map.begin(); itList != h_map.end(); ++itList){
-
-
-
 			//std::string testcase = arrName[i];
 			if(name.compare(itList->first)==0){
 				//std::cout << itList->first << "," << itList->second << '\n';
 				char heatingCOP_string1[1024];
 				sprintf(heatingCOP_string1, "%f", itList->second);
 				gl_set_value_by_name(parent2, "heating_COP", heatingCOP_string1);
-
-
 			}
 		}
 		for(std::map<char*, double>::iterator itList1 = c_map.begin(); itList1 != c_map.end(); ++itList1){
-
 					if(name.compare(itList1->first)==0){
 						//std::cout << itList1->first << "," << itList1->second << '\n';
 						char coolingCOP_string1[1024];
 						sprintf(coolingCOP_string1, "%f", itList1->second);
 						gl_set_value_by_name(parent2, "cooling_COP", coolingCOP_string1);
-
-
 					}
 		}
 
+*/
 
-
-			if(nashL!=0 && totalL!=0){
+			/*if(nashL!=0 && totalL!=0){
 
 					//printf("nash, total conditions satisfied------------ \r\n");
 					indoorTemp = gl_get_double_by_name(parent2, "air_temperature");
@@ -2057,31 +2105,40 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 
 						double calculatedLoad = 0.0;
 						double range = 2.0;
-
 						double coolingmin = *coolingSet - range;
 						double coolingmax = *coolingSet + range;
 						double heatingmin = *heatingSet - range;
 						double heatingmax = *heatingSet + range;
-
 						double theta = 0.5;
 						double gama = 1;
 						double gamadoubled = pow(gama, 2.0);
-
 						bool reCalculated = false;
 						double c_cop;
 						double h_cop;
 						double air_temperature = *indoorTemp;
-
 						double calculatedCoolingCapacity;
 						double calculatedHeatingCapacity;
 						if (*indoorTemp> coolingmin){
 
-							printf("cooling min satisfies condition------------ \r\n");
+							//printf("cooling min satisfies condition------------ \r\n");
 							calculatedLoad = ((2*theta*gamadoubled*(*coolingD)) - (nashL*totalL)) / ((2*theta*gamadoubled)+nashL);
 							if (calculatedLoad >= (*coolingD)){
 								calculatedCoolingCapacity = *coolingD;
 								//itList->second.calculatedCoolingCOP = itList->second.initCoolingCOP;
+								for(std::map<char*, double>::iterator itList1 = c_map.begin(); itList1 != c_map.end(); ++itList1){
+											if(name.compare(itList1->first)==0){
+												c_cop = itList1->second;
+											}
+								}
+
 								//itList->second.calculatedHeatingCOP = itList->second.initHeatingCOP;
+								std::string name = namebuf;
+										for(std::map<char*, double>::iterator itList = h_map.begin(); itList != h_map.end(); ++itList){
+											//std::string testcase = arrName[i];
+											if(name.compare(itList->first)==0){
+												h_cop = itList->second;
+											}
+										}
 							}else{
 								reCalculated = true;
 								calculatedCoolingCapacity = calculatedLoad;
@@ -2090,30 +2147,54 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 								double dcc = *designCoolingCap;
 								c_cop = (dcc*(1.48924533-0.00514995*(pTout))*(-0.01363961+0.01066989*(pTout)))/calculatedCoolingCapacity * KWPBTUPH;
 								//itList->second.calculatedHeatingCOP = itList->second.initHeatingCOP;
-								h_cop = *initHeatingCOP;
+								std::string name = namebuf;
+										for(std::map<char*, double>::iterator itList = h_map.begin(); itList != h_map.end(); ++itList){
+											//std::string testcase = arrName[i];
+											if(name.compare(itList->first)==0){
+												h_cop = itList->second;
+											}
+										}
+								//h_cop = *initHeatingCOP;
 							}
 							//if (calculatedLoad >= itList->second.coolingDemand){
 								//itList->second.willWork = true;
 							//}
 									//printf("original load was : %f calculated load is : %f \n", itList->second.coolingDemand, calculatedLoad);
 						}else if (*indoorTemp< heatingmax){
-							printf("heating max satisfies condition------------ \r\n");
+							//printf("heating max satisfies condition------------ \r\n");
 							calculatedLoad = ((2 * theta*gamadoubled*(*heatingD)) - (nashL*totalL)) / ((2 * theta*gamadoubled) + nashL);
 
 							if (calculatedLoad >= (*heatingD)){
 								calculatedHeatingCapacity = *heatingD;
 								//itList->second.calculatedCoolingCOP = itList->second.initCoolingCOP;
+								for(std::map<char*, double>::iterator itList1 = c_map.begin(); itList1 != c_map.end(); ++itList1){
+													if(name.compare(itList1->first)==0){
+														//std::cout << itList1->first << "," << itList1->second << '\n';
+														c_cop = itList1->second;
+													}
+										}
 								//itList->second.calculatedHeatingCOP = itList->second.initHeatingCOP;
+								std::string name = namebuf;
+										for(std::map<char*, double>::iterator itList = h_map.begin(); itList != h_map.end(); ++itList){
+											//std::string testcase = arrName[i];
+											if(name.compare(itList->first)==0){
+												h_cop =  itList->second;
+											}
+										}
 							} else{
 								reCalculated = true;
 								calculatedHeatingCapacity = calculatedLoad;
 								//itList->second.calculatedCoolingCOP = itList->second.initCoolingCOP;
+								for(std::map<char*, double>::iterator itList1 = c_map.begin(); itList1 != c_map.end(); ++itList1){
+													if(name.compare(itList1->first)==0){
+														c_cop =itList1->second;
+													}
+										}
 								double pTout = *outdoorTemp;
 								double dcc = *designHeatingCap;
 								h_cop=(dcc*(0.34148808+0.00894102*(pTout)+0.00010787*(pTout)*(pTout))*(2.03914613-0.03906753*(pTout)+0.00045617*(pTout)*(pTout)-0.00000203*(pTout)*(pTout)*(pTout)))
 																	/ calculatedHeatingCapacity * KWPBTUPH;
 								//itList->second.calculatedHeatingCOP = calculateHeatingCOP(itList->first);
-								c_cop = *initCoolingCOP;
 
 							}
 							//if (calculatedLoad >= itList->second.heatingDemand){
@@ -2123,14 +2204,14 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 						}
 
 						if (reCalculated && c_cop>0 &&h_cop>0){//
-							printf("---------------------final condition------------------------------>>\r\n");
+							//printf("---------------------final condition------------------------------>>\r\n");
 							// We have to cool
 							if (*pMonitor > cool_max){
 								double coolingCOP = c_cop;
 								char coolingCOP_string[1024];
 								sprintf(coolingCOP_string, "%f", coolingCOP);
 								gl_set_value_by_name(parent2, "cooling_COP", coolingCOP_string);
-								printf(" We have to cool :%f\r\n", c_cop);
+								//printf(" We have to cool :%f\r\n", c_cop);
 							}
 							// We have to heat
 							else if (*pMonitor < heat_min){
@@ -2138,7 +2219,7 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 								char heatingCOP_string[1024];
 								sprintf(heatingCOP_string, "%f", heatingCOP);
 								gl_set_value_by_name(parent2, "heating_COP", heatingCOP_string);
-								printf(" We have to heat : %f\r\n", h_cop);
+								//printf(" We have to heat : %f\r\n", h_cop);
 							}
 							// We might heat, if the price is right
 							else if (*pMonitor <= heat_max && *pMonitor >= heat_min){
@@ -2159,6 +2240,9 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 							printf(" ----------------------------------------------------<<\r\n");
 						}
 					}
+*/
+
+
 
 
 		////////////////////////////////////////////////////////////////////////////////
@@ -2226,6 +2310,9 @@ TIMESTAMP controller::sync(TIMESTAMP t0, TIMESTAMP t1){
 		controller_bid.market_id = lastmkt_id;
 		controller_bid.price = last_p;
 		controller_bid.quantity = -last_q;
+
+
+
 
 
 		///////////////////////////////////changing comfort zones of hvac//////////////////////////
@@ -2352,6 +2439,7 @@ TIMESTAMP controller::postsync(TIMESTAMP t0, TIMESTAMP t1){
 
 	return rv;
 }
+
 
 int controller::dev_level_ctrl(TIMESTAMP t0, TIMESTAMP t1){
 	if (engaged == 1)
